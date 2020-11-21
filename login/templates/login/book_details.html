@@ -1,0 +1,130 @@
+{% load static %}
+<link rel="stylesheet" type="text/css"
+href="{% static 'login/books_style.css' %}">
+
+<header >
+
+	<div class="topnav">
+		<a class="active" href="{% url 'login:book_list' %}">Home</a>
+		<a href="{% url 'login:index' %}">Sign In</a>
+		<a href="#contact">Contact</a>
+		<a href="#about">About</a>
+		<a class="admin" href="">Admin</a>
+	</div>
+	
+	<img src="http://i65.tinypic.com/2dslmr4.jpg" height="95px" width="370px">
+
+</header>
+
+<body>
+
+<form action={% url 'login:book_list' %} method="POST">
+{% csrf_token %}
+
+	<div style="margin-top:135px;">
+	<table  width="26%" class="recTable" cellspacing="0" cellpadding="0">
+	<tr class="abc">
+		<td colspan="3" align="center"><button type="submit" class="recButton" name="recomm">	
+		<strong>Recommendations</strong><br>
+		</button>
+		</td>
+	</tr>
+	<tr class="abc"><td colspan="3"><br></td></tr>	
+		{% for i in SVD_rec_books %}
+			<td align="center" width="20%"><img src={{i.image_url}} alt="book1" height="110" width="70"> 
+			<div style="font-size:10px"><b> {{i.bookTitle}} </div>
+			</td>
+			{% if forloop.counter|divisibleby:2 %}
+			<tr><td><br></td></tr>	
+			{%endif%}
+		{% endfor %}
+		
+		
+		
+		{%if flag_zero_ratings%}
+		<tr><td colspan="3"><p class="recTitle"><b><u>Highest Rated Books</u> >>></p></td></tr>
+		{% for i in books_high_mean %}
+			<td align="center" width="20%"><img src={{i.image_url}} alt="book1" height="110" width="70"> 
+			<div style="font-size:10px"><b> {{i.bookTitle}} </div>
+			</td>
+			{% if forloop.counter|divisibleby:3 %}
+			<tr><td><br></td></tr>	
+			{%endif%} 
+		{% endfor %}
+		<tr class="abc"><td colspan="3"><br></td></tr>
+		<tr><td colspan="3"><p class="recTitle"><b><u>Most Rated Books</u> >>></p></td></tr>
+		{% for i in books_high_ratings %}
+			<td align="center" width="20%"><img src={{i.image_url}} alt="book1" height="110" width="70"> 
+			<div style="font-size:10px"><b> {{i.bookTitle}} </div>
+			</td>
+			{% if forloop.counter|divisibleby:3 %}
+			<tr><td><br></td></tr>	
+			{%endif%} 
+		{% endfor %}
+		{%endif%}
+					
+	</table >
+	</div>
+	
+	<div style="margin-left:350px;" >
+	<table width="100%" class="content_rec_table">
+	{% if flag %}<tr>
+	<b><u>Books similar to "{{selected_book}}"</u> >>><br>
+		{% for i in KNN_rec_books %}
+			<td align="center" width="10%"><img src={{i.image_url}} alt="book1" height="100" width="70"> 
+			<div style="font-size:11px"> {{i.bookTitle}} </div>
+			</td>
+		{% endfor %}
+	</tr>
+	{% endif %}
+	</table>
+	</div>
+	
+	<div style="margin-left:350px;" >
+	<table width="100%" class="booksTable">
+	
+	{% if flag %}
+	<tr><td><br></td></tr>
+	{%endif%}
+	
+	{% for i in list %}
+		
+		<td align="center" width="20%">
+			<button type="submit" formaction={% url 'login:book_list' %} name="content_rec" value="{{forloop.counter0}}" class="image_button">
+			<img class="book_img" src={{i.image_url}} alt="book1" height="180" width="120">
+			</button>
+			
+		<div style="font-size:11px;font-style:italic"> {{i.authors}} </div>
+		
+		<div><b> {{i.title}} </b></div>
+			
+		<div class="rate" >
+			<input type="radio" id="{{forloop.counter0}}-star5" name="book{{forloop.counter0}}" value="5"
+			{% if i.selected_radio == 5 %} checked="checked" {%endif%}  />
+			<label for="{{forloop.counter0}}-star5" title="5 stars">5 stars</label>
+			<input type="radio" id="{{forloop.counter0}}-star4" name="book{{forloop.counter0}}" value="4" 
+			{% if i.selected_radio == 4 %} checked="checked" {%endif%} />
+			<label for="{{forloop.counter0}}-star4" title="4 stars">4 stars</label>
+			<input type="radio" id="{{forloop.counter0}}-star3" name="book{{forloop.counter0}}" value="3" 
+			{% if i.selected_radio == 3 %} checked="checked" {%endif%} />
+			<label for="{{forloop.counter0}}-star3" title="3 stars">3 stars</label>
+			<input type="radio" id="{{forloop.counter0}}-star2" name="book{{forloop.counter0}}" value="2" 
+			{% if i.selected_radio == 2 %} checked="checked" {%endif%} />
+			<label for="{{forloop.counter0}}-star2" title="2 stars">2 stars</label>
+			<input type="radio" id="{{forloop.counter0}}-star1" name="book{{forloop.counter0}}" value="1"
+			{% if i.selected_radio == 1 %} checked="checked" {%endif%} />
+			<label for="{{forloop.counter0}}-star1" title="1 star">1 star</label>
+		</div>
+		</td>
+		
+		{% if forloop.counter|divisibleby:5 %}
+			<tr><td><br><br></td></tr>
+		{%endif%} 
+		
+	{% endfor %}
+	</table>
+	</div>
+	
+</form>
+
+</body>

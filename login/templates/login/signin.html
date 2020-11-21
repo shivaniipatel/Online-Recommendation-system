@@ -1,0 +1,44 @@
+{% load static %}
+<link rel = "stylesheet" type ="text/css" 
+href="{% static 'login/style.css' %}">
+
+<header >
+
+	<div class="topnav">
+		<a class="active" href="{% url 'login:book_list' %}">Home</a>
+		<a href="{% url 'login:index' %}">Sign In</a>
+		<a href="#contact">Contact</a>
+		<a href="#about">About</a>
+		<a class="admin" href="">Admin</a>
+	</div>
+	
+	<img src="http://i65.tinypic.com/2dslmr4.jpg" height="95px" width="370px">
+	<!-- "{% static 'login/images/image.jpg' %}" -->
+</header>
+
+<body>
+<div class="qwe">
+<form action="{% url 'login:index' %}"  method ="POST"> 
+	{% csrf_token %}
+	<h2> Sign In </h2>
+	<table>
+		<tr><b>Username:
+		<tr><input type ="text" name="username" >
+		<tr>Password:</b>
+		<tr><input type="password" name="password"  >
+		<tr><br><br>
+		<button type="submit" class="button" 
+		style="margin-left:45px">Log In</button>
+	</table>
+</form>
+
+<p style="color:red;margin-left:25px">{{error_message}}</p>
+
+<form >
+<div style="margin-left:28px">New Customer?</div>
+<button type="submit" class="regButton" formaction="{% url 'login:register' %}" 
+style="margin-left:22px">Register Here</button>
+</form>
+</div>	
+
+</body>
