@@ -73,7 +73,7 @@ def recMain(selected_radio):
     idx = np.argsort(my_pred,0)[::-1]
     idx = idx[:10]
 
-    books =  pd.read_csv(r'D:\books\books_url.csv')
+    books =  pd.read_csv(r'C:\Users\Lead School\Documents\user\Online-Recommendation-system\books_url.csv')
     books = books['title']
     books_rec = ["" for x in range(10)]
     

@@ -66,8 +66,8 @@ def register(request):
 
 def book_list(request):
     
-    books_url = pd.read_csv(r'D:\books\dataset\books_url.csv')
-    ratings = pd.read_csv(r'D:\books\dataset\ratings(3).csv')
+    books_url = pd.read_csv(r'C:\Users\Lead School\Documents\user\Online-Recommendation-system\dataset\books_url.csv')
+    ratings = pd.read_csv(r'C:\Users\Lead School\Documents\user\Online-Recommendation-system\dataset\ratings(3).csv')
     book = 'book'
     selected_radio = np.zeros((1000,1))
     selected_radio_to_append = np.zeros((1,3))
