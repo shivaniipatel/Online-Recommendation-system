@@ -1,1 +1,1 @@
-web: gunicorn onlinebooksrecc.wsgi --log-file -
+web: gunicorn books.wsgi --log-file -
