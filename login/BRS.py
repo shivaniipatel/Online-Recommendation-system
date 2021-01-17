@@ -3,15 +3,17 @@ import numpy as np
 from scipy.sparse.linalg import svds
 from sklearn.neighbors import NearestNeighbors
 from scipy.sparse import csr_matrix
+import os
+filedir = os.path.abspath(os.getcwd())
 
 # explicit_users
 class Books():
     
     def __init__(self):
 
-        self.books = pd.read_csv(r'dataset\books_url.csv',delimiter=',')
-        self.users = pd.read_csv(r'dataset\Users.csv',delimiter=',')
-        self.ratings = pd.read_csv(r'dataset\ratings(3).csv',delimiter=',')
+        self.books = pd.read_csv(rf'{filedir}\dataset\books_url.csv',delimiter=',')
+        self.users = pd.read_csv(rf'{filedir}\dataset\Users.csv',delimiter=',')
+        self.ratings = pd.read_csv(rf'{filedir}\dataset\ratings(3).csv',delimiter=',')
         
         # Splitting Explicit and Implicit user ratings
         self.ratings_explicit = self.ratings[self.ratings.bookRating != 0]
