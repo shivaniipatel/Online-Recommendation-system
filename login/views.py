@@ -66,8 +66,9 @@ def register(request):
 
 def book_list(request):
     
-    books_url = pd.read_csv(r'C:\Users\Lead School\Documents\user\Online-Recommendation-system\dataset\books_url.csv')
-    ratings = pd.read_csv(r'C:\Users\Lead School\Documents\user\Online-Recommendation-system\dataset\ratings(3).csv')
+    books_url = pd.read_csv(r'dataset/books_url.csv')
+    ratings = pd.read_csv(r'dataset\ratings(3).csv')
+    
     book = 'book'
     selected_radio = np.zeros((1000,1))
     selected_radio_to_append = np.zeros((1,3))
@@ -156,7 +157,7 @@ def book_list(request):
                     if ratings['ISBN'][j] == i+1 :
                         abvgs=0
                 if abvgs == 1:
-                    with open(r'D:\books\dataset\ratings(3).csv','a') as f:
+                    with open(r'dataset\ratings(3).csv','a') as f:
                         writer = csv.writer(f)
                         writer.writerow(selected_radio_to_append[0])
                          

@@ -8,12 +8,10 @@ from scipy.sparse import csr_matrix
 class Books():
     
     def __init__(self):
-        # self.books = pd.read_csv(r'D:\books\dataset\books_url.csv',delimiter=',')
-        # self.users = pd.read_csv(r'D:\books\dataset\Users.csv',delimiter=',')
-        # self.ratings = pd.read_csv(r'D:\books\dataset\ratings(3).csv',delimiter=',')
-        self.books = pd.read_csv(r'C:\Users\Lead School\Documents\user\Online-Recommendation-system\dataset\books_url.csv',delimiter=',')
-        self.users = pd.read_csv(r'C:\Users\Lead School\Documents\user\Online-Recommendation-system\dataset\Users.csv',delimiter=',')
-        self.ratings = pd.read_csv(r'C:\Users\Lead School\Documents\user\Online-Recommendation-system\dataset\ratings(3).csv',delimiter=',')
+
+        self.books = pd.read_csv(r'dataset\books_url.csv',delimiter=',')
+        self.users = pd.read_csv(r'dataset\Users.csv',delimiter=',')
+        self.ratings = pd.read_csv(r'dataset\ratings(3).csv',delimiter=',')
         
         # Splitting Explicit and Implicit user ratings
         self.ratings_explicit = self.ratings[self.ratings.bookRating != 0]
