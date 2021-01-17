@@ -3,6 +3,8 @@ import numpy as np
 from scipy.sparse.linalg import svds
 from sklearn.neighbors import NearestNeighbors
 from scipy.sparse import csr_matrix
+import os
+filedir = os.path.abspath(os.getcwd())
 
 # explicit_users
 class Books():

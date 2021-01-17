@@ -12,6 +12,9 @@ import numpy as np
 
 from .models import SignIn, Register
 
+import os
+filedir = os.path.abspath(os.getcwd())
+
 # Create your views here.
 
 def index(request):  
@@ -157,7 +160,7 @@ def book_list(request):
                     if ratings['ISBN'][j] == i+1 :
                         abvgs=0
                 if abvgs == 1:
-                    with open(r'dataset\ratings(3).csv','a') as f:
+                    with open(rf'{filedir}\dataset\ratings(3).csv','a') as f:
                         writer = csv.writer(f)
                         writer.writerow(selected_radio_to_append[0])
                          
