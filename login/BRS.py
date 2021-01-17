@@ -11,9 +11,9 @@ class Books():
     
     def __init__(self):
 
-        self.books = pd.read_csv(rf'{filedir}\dataset\books_url.csv',delimiter=',')
-        self.users = pd.read_csv(rf'{filedir}\dataset\Users.csv',delimiter=',')
-        self.ratings = pd.read_csv(rf'{filedir}\dataset\ratings(3).csv',delimiter=',')
+        self.books = pd.read_csv('https://res.cloudinary.com/shivaniipatel/raw/upload/v1610867456/Recommendation-dataset/books_url_idm11y.csv',delimiter=',')
+        self.users = pd.read_csv('https://res.cloudinary.com/shivaniipatel/raw/upload/v1610867456/Recommendation-dataset/Users_gsfohe.csv',delimiter=',')
+        self.ratings = pd.read_csv('https://res.cloudinary.com/shivaniipatel/raw/upload/v1610867457/Recommendation-dataset/ratings_3_uyvrii.csv',delimiter=',')
         
         # Splitting Explicit and Implicit user ratings
         self.ratings_explicit = self.ratings[self.ratings.bookRating != 0]

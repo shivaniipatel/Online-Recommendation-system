@@ -69,8 +69,11 @@ def register(request):
 
 def book_list(request):
     
-    books_url = pd.read_csv(rf'{filedir}\dataset/books_url.csv')
-    ratings = pd.read_csv(rf'{filedir}\dataset\ratings(3).csv')
+    # books_url = pd.read_csv(rf'{filedir}\dataset/books_url.csv')
+    # ratings = pd.read_csv(rf'{filedir}\dataset\ratings(3).csv')
+
+    books_url = pd.read_csv('https://res.cloudinary.com/shivaniipatel/raw/upload/v1610867456/Recommendation-dataset/books_url_idm11y.csv',delimiter=',')
+    ratings = pd.read_csv('https://res.cloudinary.com/shivaniipatel/raw/upload/v1610867457/Recommendation-dataset/ratings_3_uyvrii.csv',delimiter=',')
     
     book = 'book'
     selected_radio = np.zeros((1000,1))
